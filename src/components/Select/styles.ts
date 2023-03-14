@@ -35,6 +35,7 @@ export const FilterInput = styled.select`
   border: none;
   outline: none;
   padding: 20px;
+  padding-right: 40px;
   appearance: none;
   position: relative;
 

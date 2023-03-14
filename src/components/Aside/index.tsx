@@ -1,4 +1,5 @@
 import { Select } from '@/components/Select'
+import { Button } from '@/components/Button'
 
 import logo from '@/assets/icons/logo.svg'
 import search from '@/assets/icons/search.svg'
@@ -93,9 +94,9 @@ export function Aside() {
           <img src={logo} alt="" />
           <HeaderInput>
             <input type="text" placeholder="Insira uma cidade" />
-            <button>
+            <Button>
               <img src={search} alt="ícone de lupa" />
-            </button>
+            </Button>
           </HeaderInput>
         </div>
       </AsideHeader>

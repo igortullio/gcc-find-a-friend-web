@@ -12,6 +12,8 @@ export const Container = styled.div`
   background-color: #ffffff;
   overflow: hidden;
 
+  cursor: pointer;
+
   &:hover {
     background-color: #0d3b66;
 

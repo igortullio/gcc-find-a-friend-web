@@ -9,30 +9,34 @@ import {
 } from './styles'
 
 type SelectProps = ComponentProps<typeof FilterInput> & {
-  label: string
+  label?: string
   name: string
+  defaultLabel?: string
   options: {
     value: string | number
     label: string
   }[]
 }
 
-export function Select({ label, name, options }: SelectProps) {
+export function Select({
+  label,
+  name,
+  options,
+  defaultLabel = 'Selecione',
+}: SelectProps) {
   return (
     <Filter>
-      <FilterLabel htmlFor={name}>{label}</FilterLabel>
+      {label && <FilterLabel htmlFor={name}>{label}</FilterLabel>}
       <FilterWrapper>
         <FilterInput name={name} id={name}>
           <FilterInputOption value="" disabled selected>
-            Selecione
+            {defaultLabel}
           </FilterInputOption>
-          {options.map((option) => {
-            return (
-              <FilterInputOption key={option.value} value={option.value}>
-                {option.label}
-              </FilterInputOption>
-            )
-          })}
+          {options.map((option) => (
+            <FilterInputOption key={option.value} value={option.value}>
+              {option.label}
+            </FilterInputOption>
+          ))}
         </FilterInput>
         <img src={chevron} alt="" />
       </FilterWrapper>
