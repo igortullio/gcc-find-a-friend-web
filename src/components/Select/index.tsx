@@ -8,6 +8,8 @@ import {
   FilterWrapper,
 } from './styles'
 
+type SelectValue = string
+
 type SelectProps = ComponentProps<typeof FilterInput> & {
   label?: string
   name: string
@@ -16,6 +18,7 @@ type SelectProps = ComponentProps<typeof FilterInput> & {
     value: string | number
     label: string
   }[]
+  onSelect?: (value: SelectValue) => void
 }
 
 export function Select({
@@ -23,13 +26,23 @@ export function Select({
   name,
   options,
   defaultLabel = 'Selecione',
+  onSelect,
 }: SelectProps) {
+  function handleChange(value: string) {
+    !!onSelect && onSelect(value)
+  }
+
   return (
     <Filter>
       {label && <FilterLabel htmlFor={name}>{label}</FilterLabel>}
       <FilterWrapper>
-        <FilterInput name={name} id={name}>
-          <FilterInputOption value="" disabled selected>
+        <FilterInput
+          name={name}
+          id={name}
+          defaultValue={defaultLabel}
+          onChange={(e) => handleChange(e.target.value)}
+        >
+          <FilterInputOption key={0} value={defaultLabel} disabled>
             {defaultLabel}
           </FilterInputOption>
           {options.map((option) => (
